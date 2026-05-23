@@ -1,2 +1,6 @@
 /*
-  Content-Security-Policy: frame-ancestors https://dpmptsp.bantulkab.go.id
+  Content-Security-Policy: frame-ancestors https://dpmptst.bantulkab.go.id https://www.dpmptst.bantulkab.go.id
+ 
+/*
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy: frame-ancestors https://dpmptst.bantulkab.go.id
