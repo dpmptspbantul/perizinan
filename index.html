@@ -443,6 +443,69 @@ fetch('https://opensheet.elk.sh/1V6yWNMpVjlR4pBVlQMf0Z9yRHGNY_rYuslTc4Wf66uU/She
 
 </script>
 
+<!-- Auto Scale iFrame -->
+<script>
+
+function getIframeWidth() {
+
+    try {
+
+        // coba baca parent iframe (kalau cross-domain tetap aman fallback)
+        if (window.parent && window.parent !== window) {
+
+            return window.frameElement
+                ? window.frameElement.clientWidth
+                : window.innerWidth;
+
+        }
+
+    } catch (e) {
+        // fallback kalau cross-origin
+        return window.innerWidth;
+    }
+
+    return window.innerWidth;
+}
+
+function autoScaleByIframe() {
+
+    let width = getIframeWidth();
+
+    let scale = 1;
+
+    // SCALING BERDASARKAN LEBAR IFRAME, BUKAN DEVICE
+
+    if (width < 420) {
+        scale = 0.75;
+    }
+    else if (width < 600) {
+        scale = 0.82;
+    }
+    else if (width < 900) {
+        scale = 0.9;
+    }
+    else if (width < 1200) {
+        scale = 0.97;
+    }
+    else {
+        scale = 1;
+    }
+
+    document.body.style.transform = `scale(${scale})`;
+    document.body.style.transformOrigin = "top left";
+
+    document.body.style.width = (100 / scale) + "%";
+
+}
+
+// jalan saat load
+window.addEventListener("load", autoScaleByIframe);
+
+// jalan saat resize
+window.addEventListener("resize", autoScaleByIframe);
+
+</script>
+
 <footer class="text-center py-3 small text-muted border-top bg-white">
 
 © <span id="year"></span>
